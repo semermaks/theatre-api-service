@@ -79,11 +79,11 @@ class Reservation(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )
 
-    def __str__(self):
-        return str(self.created_at)
-
     class Meta:
         ordering = ["-created_at"]
+
+    def __str__(self):
+        return str(self.created_at)
 
 
 class Ticket(models.Model):
@@ -95,6 +95,10 @@ class Ticket(models.Model):
     reservation = models.ForeignKey(
         Reservation, on_delete=models.CASCADE, related_name="tickets"
     )
+
+    class Meta:
+        unique_together = ("performance", "row", "seat")
+        ordering = ["row", "seat"]
 
     @staticmethod
     def validate_ticket(row, seat, theatre_hall, error_to_raise):
@@ -137,7 +141,3 @@ class Ticket(models.Model):
         return (
             f"{str(self.performance)} (row: {self.row}, seat: {self.seat})"
         )
-
-    class Meta:
-        unique_together = ("performance", "row", "seat")
-        ordering = ["row", "seat"]
