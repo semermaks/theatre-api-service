@@ -1,6 +1,9 @@
 Sure, here is a README file for the given GitHub repository:
 
 ---
+## Environment Variables (.env)
+
+Before starting the project, you need to create a `.env` file in the root directory of the project. You can use the provided `.env.example` file as a template to set up your environment variables. Make sure to fill in the necessary values for variables such as database connection details, API keys, and any other configurations required for the project to run successfully. Having a well-configured `.env` file is crucial for the proper functioning of the Theatre API Service.
 
 # Theatre API Service
 
